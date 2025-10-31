@@ -7,6 +7,7 @@ taxonomies.categories = ["projects"]
 taxonomies.tags = ["fastapi","docker","automation","signal","microservices","open-meteo"]
 [extra]
 toc = true
+reaction = false
 +++
 
 ## Overview
