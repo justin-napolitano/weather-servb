@@ -1,21 +1,22 @@
-# weather-servb
+# weather-service
 
-`weather-servb` is a Python-based FastAPI service designed to fetch daily weather forecasts from Open-Meteo and deliver notifications through an internal gateway. It supports scheduled posts, direct query endpoints, and configurable location and timezone settings.
+`weather-service` is a Python-based FastAPI microservice designed to provide daily weather forecasts and send notifications through an internal gateway. It supports scheduled updates, direct query endpoints, and flexible location and timezone configurations.
 
 ## Features
 
-- Scheduled daily weather notifications using cron syntax (default at 7:00 AM local time)
+- Scheduled daily weather notifications using cron syntax (default schedule: 7:00 AM local time)
 - REST API endpoints:
   - `GET /health` for service status and configuration
-  - `GET /today?city=City&state=State` for current forecast data
-- Supports specifying city, state, timezone, or direct geographic coordinates (latitude and longitude)
-- Pushes notifications via a configurable notifier gateway with authentication support
-- Containerized with Docker for easy deployment
+  - `GET /today?city=City&state=State` for current weather forecast
+- Supports specifying location by city/state or directly via latitude and longitude
+- Timezone-aware scheduling and responses
+- Pushes notifications to a configurable notifier gateway with optional authentication
+- Containerized with Docker for straightforward deployment
 
 ## Tech Stack
 
 - Python 3.12
-- FastAPI for the web framework
+- FastAPI for web framework
 - Uvicorn as ASGI server
 - Requests for HTTP calls
 - croniter for cron schedule parsing
@@ -33,8 +34,8 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/justin-napolitano/weather-servb.git
-cd weather-servb
+git clone https://github.com/justin-napolitano/weather-service.git
+cd weather-service
 ```
 
 2. Create an `.env` file or set environment variables as needed. Example variables:
@@ -55,11 +56,11 @@ LON=-81.3792
 3. Build and run the Docker container:
 
 ```bash
-docker build -t weather-servb .
-docker run -p 8789:8789 --env-file .env weather-servb
+docker build -t weather-service .
+docker run -p 8789:8789 --env-file .env weather-service
 ```
 
-Alternatively, use Docker Compose if available:
+Alternatively, if using Docker Compose:
 
 ```bash
 docker compose build weather-service
@@ -83,23 +84,18 @@ curl "http://localhost:8789/today?city=Orlando&state=FL"
 ## Project Structure
 
 ```
-/app.py           # Main FastAPI application with scheduling and endpoints
-/Dockerfile       # Container build instructions
-/README.md        # Project documentation
+/app.py           # Main application entry point with API and scheduling logic
+/Dockerfile       # Docker container definition
+/README.md        # This documentation file
 /requirements.txt # Python dependencies
-/weather.py       # Helper module for simple weather fetch via wttr.in
+/weather.py       # Weather fetching utility module
 ```
 
 ## Future Work / Roadmap
 
-- Add support for more detailed weather data and additional forecast parameters
-- Implement caching to reduce redundant external API calls
-- Enhance error handling and logging
-- Add unit and integration tests
-- Support multiple notification channels (e.g., email, SMS, push notifications)
-- Provide metrics and monitoring endpoints
-- Allow configuration via a UI or API
-
----
-
-*Note: This README is generated based on available source and inferred details.*
+- Add support for more detailed weather data and forecasts
+- Implement caching to reduce external API calls
+- Expand notification channels beyond the current gateway
+- Add authentication and rate limiting for API endpoints
+- Improve error handling and logging
+- Provide Helm charts or Kubernetes manifests for cloud deployment
