@@ -1,68 +1,105 @@
-# weather-service
+# weather-servb
 
-`weather-service` is a FastAPI container that fetches daily forecasts from [Open-Meteo](https://open-meteo.com) and sends them through the internal `notifier-gateway`. 
-It also exposes endpoints for direct queries.
+`weather-servb` is a Python-based FastAPI service designed to fetch daily weather forecasts from Open-Meteo and deliver notifications through an internal gateway. It supports scheduled posts, direct query endpoints, and configurable location and timezone settings.
 
 ## Features
-- Scheduled weather posts (cron syntax, default 7 AM)
-- `/today` and `/health` endpoints for queries
-- Supports custom city, timezone, and coordinates
-- Pushes notifications with `to` and `token` fields
-- Designed for use within the `assistant-net` automation stack
 
-## Environment
-| Variable | Description | Example |
-|-----------|-------------|----------|
-| `CITY` | Default city name | `Orlando` |
-| `STATE` | State or region | `FL` |
-| `LAT` / `LON` | Optional coordinates to skip geocoding | `28.5383` / `-81.3792` |
-| `TZ` | Timezone | `America/New_York` |
-| `CRON_SCHEDULE` | When to send | `0 7 * * *` |
-| `NOTIFY_URL` | Gateway endpoint | `http://notifier-gateway:8787/send` |
-| `NOTIFY_TO` | Recipient phone or user ID | `+15555551234` |
-| `NOTIFY_TOKEN` | Auth token, optional | `changeme` |
-| `SOURCE_NAME` | Identifier for the sender | `weather-service` |
+- Scheduled daily weather notifications using cron syntax (default at 7:00 AM local time)
+- REST API endpoints:
+  - `GET /health` for service status and configuration
+  - `GET /today?city=City&state=State` for current forecast data
+- Supports specifying city, state, timezone, or direct geographic coordinates (latitude and longitude)
+- Pushes notifications via a configurable notifier gateway with authentication support
+- Containerized with Docker for easy deployment
 
-## Example Compose Service
-```yaml
-weather-service:
-  build: ./weather-service
-  restart: unless-stopped
-  env_file: [.env]
-  environment:
-    CRON_SCHEDULE: "0 7 * * *"
-    NOTIFY_URL: "http://notifier-gateway:8787/send"
-    NOTIFY_TO: "+15555551234"
-    TZ: "America/New_York"
-    CITY: "Orlando"
-    STATE: "FL"
-    LAT: 28.5383
-    LON: -81.3792
-  depends_on: [notifier-gateway]
-  ports: ["127.0.0.1:8789:8789"]
-  networks: [assistant-net]
+## Tech Stack
+
+- Python 3.12
+- FastAPI for the web framework
+- Uvicorn as ASGI server
+- Requests for HTTP calls
+- croniter for cron schedule parsing
+- pytz for timezone handling
+- Docker for containerization
+
+## Getting Started
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+
+### Installation & Run
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/justin-napolitano/weather-servb.git
+cd weather-servb
 ```
 
-## Endpoints
-- `GET /health` → Service config and status  
-- `GET /today?city=Orlando&state=FL` → Returns forecast JSON
+2. Create an `.env` file or set environment variables as needed. Example variables:
 
-Example:
-```bash
-curl "http://localhost:8789/today?city=Orlando&state=FL"
+```
+CITY=Orlando
+STATE=FL
+TZ=America/New_York
+CRON_SCHEDULE="0 7 * * *"
+NOTIFY_URL=http://notifier-gateway:8787/send
+NOTIFY_TO=+15555551234
+NOTIFY_TOKEN=changeme
+SOURCE_NAME=weather-service
+LAT=28.5383
+LON=-81.3792
 ```
 
-## Run Locally
+3. Build and run the Docker container:
+
 ```bash
-cp .env.example .env
+docker build -t weather-servb .
+docker run -p 8789:8789 --env-file .env weather-servb
+```
+
+Alternatively, use Docker Compose if available:
+
+```bash
 docker compose build weather-service
 docker compose up weather-service
 ```
 
-The service prints `[notify] 200 OK` on successful sends.
+### Usage
 
-## Credits
-- [Open-Meteo](https://open-meteo.com)
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [croniter](https://pypi.org/project/croniter/)
-- [pytz](https://pypi.org/project/pytz/)
+- Check service health:
+
+```bash
+curl http://localhost:8789/health
+```
+
+- Get today's forecast:
+
+```bash
+curl "http://localhost:8789/today?city=Orlando&state=FL"
+```
+
+## Project Structure
+
+```
+/app.py           # Main FastAPI application with scheduling and endpoints
+/Dockerfile       # Container build instructions
+/README.md        # Project documentation
+/requirements.txt # Python dependencies
+/weather.py       # Helper module for simple weather fetch via wttr.in
+```
+
+## Future Work / Roadmap
+
+- Add support for more detailed weather data and additional forecast parameters
+- Implement caching to reduce redundant external API calls
+- Enhance error handling and logging
+- Add unit and integration tests
+- Support multiple notification channels (e.g., email, SMS, push notifications)
+- Provide metrics and monitoring endpoints
+- Allow configuration via a UI or API
+
+---
+
+*Note: This README is generated based on available source and inferred details.*
