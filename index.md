@@ -1,12 +1,28 @@
 ---
-slug: "github-weather-service"
-title: "weather-service"
-repo: "justin-napolitano/weather-service"
-githubUrl: "https://github.com/justin-napolitano/weather-service"
-generatedAt: "2025-11-23T09:51:41.083483Z"
-source: "github-auto"
+slug: github-weather-service
+title: 'weather-service: Python microservice for automated weather notifications'
+repo: justin-napolitano/weather-service
+githubUrl: https://github.com/justin-napolitano/weather-service
+generatedAt: '2025-11-23T09:51:41.083483Z'
+source: github-auto
+summary: >-
+  Technical overview of a Python 3.12 FastAPI microservice with Docker that fetches weather data and
+  sends scheduled notifications.
+tags:
+  - python
+  - fastapi
+  - docker
+  - microservice
+  - weather-data
+  - scheduling
+seoPrimaryKeyword: weather-service
+seoSecondaryKeywords:
+  - fastapi
+  - weather notifications
+  - docker
+  - cron scheduling
+seoOptimized: true
 ---
-
 
 # weather-service: Technical Overview and Implementation Notes
 
@@ -60,3 +76,4 @@ The Dockerfile defines a slim Python 3.12 image with minimal dependencies instal
 ## Summary
 
 `weather-service` is a focused microservice designed for automated weather notifications with configurable scheduling and location parameters. Its architecture balances simplicity with flexibility, leveraging Python's ecosystem and containerization to facilitate deployment and integration within internal systems. Future improvements could enhance data richness, reliability, and operational features.
+
