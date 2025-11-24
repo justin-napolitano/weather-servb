@@ -22,6 +22,12 @@ seoSecondaryKeywords:
   - docker
   - cron scheduling
 seoOptimized: true
+topicFamily: automation
+topicFamilyConfidence: 0.95
+topicFamilyNotes: >-
+  The post describes a Python microservice for automated weather notifications including scheduling
+  via cron, deployment using Docker, and an API. This aligns best with the Automation family which
+  covers scripts and projects focused on automating deployment, scheduling, and related workflows.
 ---
 
 # weather-service: Technical Overview and Implementation Notes
@@ -76,4 +82,5 @@ The Dockerfile defines a slim Python 3.12 image with minimal dependencies instal
 ## Summary
 
 `weather-service` is a focused microservice designed for automated weather notifications with configurable scheduling and location parameters. Its architecture balances simplicity with flexibility, leveraging Python's ecosystem and containerization to facilitate deployment and integration within internal systems. Future improvements could enhance data richness, reliability, and operational features.
+
 
