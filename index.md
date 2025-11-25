@@ -1,13 +1,13 @@
 ---
 slug: github-weather-service
-title: 'weather-service: Python microservice for automated weather notifications'
+title: Automated Weather Notification Service Overview
 repo: justin-napolitano/weather-service
 githubUrl: https://github.com/justin-napolitano/weather-service
 generatedAt: '2025-11-23T09:51:41.083483Z'
 source: github-auto
 summary: >-
-  Technical overview of a Python 3.12 FastAPI microservice with Docker that fetches weather data and
-  sends scheduled notifications.
+  Explore the architecture and implementation of a Python-based weather
+  notification service using FastAPI and Docker.
 tags:
   - python
   - fastapi
@@ -15,19 +15,25 @@ tags:
   - microservice
   - weather-data
   - scheduling
-seoPrimaryKeyword: weather-service
+  - cron
+  - notifications
+seoPrimaryKeyword: automated weather notification service
 seoSecondaryKeywords:
-  - fastapi
-  - weather notifications
-  - docker
-  - cron scheduling
+  - weather data retrieval
+  - FastAPI deployment
+  - Docker containerization
+  - scheduling with cron
+  - timezone handling
 seoOptimized: true
 topicFamily: automation
 topicFamilyConfidence: 0.95
 topicFamilyNotes: >-
-  The post describes a Python microservice for automated weather notifications including scheduling
-  via cron, deployment using Docker, and an API. This aligns best with the Automation family which
-  covers scripts and projects focused on automating deployment, scheduling, and related workflows.
+  The post describes a Python microservice for automated weather notifications
+  including scheduling via cron, deployment using Docker, and an API. This
+  aligns best with the Automation family which covers scripts and projects
+  focused on automating deployment, scheduling, and related workflows.
+kind: project
+id: github-weather-service
 ---
 
 # weather-service: Technical Overview and Implementation Notes
