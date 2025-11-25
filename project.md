@@ -7,8 +7,8 @@ githubUrl: https://github.com/justin-napolitano/weather-servb
 generatedAt: '2025-11-24T21:36:48.492Z'
 source: github-auto
 summary: >-
-  Explore a Python FastAPI microservice for daily weather forecasts, featuring
-  REST API endpoints and scheduled notifications.
+  Explore a Python FastAPI microservice for daily weather forecasts, featuring REST API endpoints
+  and scheduled notifications.
 tags:
   - fastapi
   - python
@@ -24,8 +24,8 @@ seoSecondaryKeywords:
   - timezone handling
   - docker deployment
 seoOptimized: true
-topicFamily: null
-topicFamilyConfidence: null
+topicFamily: automation
+topicFamilyConfidence: 0.9
 kind: project
 entryLayout: project
 showInProjects: true
@@ -133,4 +133,5 @@ curl "http://localhost:8789/today?city=Orlando&state=FL"
 - Add authentication and rate limiting for API endpoints
 - Improve error handling and logging
 - Provide Helm charts or Kubernetes manifests for cloud deployment
+
 
