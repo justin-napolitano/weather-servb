@@ -1,20 +1,29 @@
 ---
 slug: github-weather-servb
 id: github-weather-servb
-title: weather-service
+title: Python FastAPI Weather Service with Notifications
 repo: justin-napolitano/weather-servb
 githubUrl: https://github.com/justin-napolitano/weather-servb
 generatedAt: '2025-11-24T21:36:48.492Z'
 source: github-auto
 summary: >-
-  `weather-service` is a Python-based FastAPI microservice designed to provide
-  daily weather forecasts and send notifications through an internal gateway. It
-  supports scheduled updates, direct query endpoints, and flexible location and
-  timezone configurations.
-tags: []
-seoPrimaryKeyword: ''
-seoSecondaryKeywords: []
-seoOptimized: false
+  Explore a Python FastAPI microservice for daily weather forecasts, featuring
+  REST API endpoints and scheduled notifications.
+tags:
+  - fastapi
+  - python
+  - docker
+  - cron
+  - uvicorn
+  - pytz
+seoPrimaryKeyword: python fastapi weather service
+seoSecondaryKeywords:
+  - weather notifications
+  - rest api endpoints
+  - scheduled updates
+  - timezone handling
+  - docker deployment
+seoOptimized: true
 topicFamily: null
 topicFamilyConfidence: null
 kind: project
